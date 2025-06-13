@@ -1,54 +1,85 @@
-# 📚 Topic Modeling for Research Papers
+
+````markdown
+---
+
+# Topic Modeling for Research Papers
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.22.0-red)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.2.2-orange)
 
-## 📌 Business Use Case
+## Business Use Case
 
-Understanding trends in academic research is essential for funding, innovation, and policy. Topic modeling helps uncover hidden themes in large volumes of research papers, enabling strategic decisions in R&D and education.
+Understanding research trends is crucial for driving innovation, allocating funding, and guiding academic and industrial R&D. This project leverages **topic modeling** to extract hidden themes from a large corpus of research paper abstracts, allowing strategic insights into evolving fields and dominant ideas.
 
-## 🧠 Features Used
+## Features Used
 
-- Abstract text from research papers
-- CountVectorizer for bag-of-words representation
-- Latent Dirichlet Allocation (LDA) for topic modeling
+- `CountVectorizer` for converting abstract text into word-count vectors  
+- `Latent Dirichlet Allocation (LDA)` for topic discovery  
+- `Streamlit` interface to upload new data and view topic assignments  
+- Top keywords extracted for each topic for better interpretability  
+- CSV output with topic proportions for every abstract  
+- Average topic distribution visualization  
 
-## ⚙️ Pipeline Overview
+## Pipeline Overview
 
 ### `model_training.py`
-- Load data
-- Convert abstract text to count vectors
-- Train LDA model
-- Save LDA model and vectorizer
+- Loads the dataset from `data/simulated_research_papers.csv`
+- Preprocesses the abstract column using `CountVectorizer`
+- Trains an LDA model with `n_components=5` using scikit-learn
+- Extracts top 10 keywords per topic
+- Saves the LDA model, vectorizer, and topic keyword list as `.pkl` files
 
 ### `app.py`
-- Upload abstracts via Streamlit
-- Run model to assign topics
-- Download topic distribution results
+- Streamlit UI to upload a CSV file with an `Abstract` column
+- Loads the pre-trained LDA model and vectorizer
+- Assigns topic distributions to new abstracts
+- Displays topic proportions along with readable topic names
+- Visualizes average topic distribution using a bar chart
+- Allows download of results as CSV
 
-## 🚀 How to Use
+## How to Use
 
 ```bash
+# Step 1: Install dependencies
 pip install -r requirements.txt
-python model_training.py
-streamlit run app.py
-```
 
-## 🗂 Project Structure
+# Step 2: Train the topic model
+python model_training.py
+
+# Step 3: Run the Streamlit web app
+streamlit run app.py
+````
+
+## Project Structure
 
 ```
 topic_modeling_research_papers/
-├── data/                         # CSV dataset of research abstracts
-├── model/                        # LDA model and vectorizer
-├── app.py                        # Streamlit app
-├── model_training.py             # Training pipeline
-├── requirements.txt              # Dependencies
-├── README.md                     # Project documentation
-└── .github/                      # Issue templates and CI
+├── data/
+│   └── simulated_research_papers.csv    # Input dataset
+├── model/
+│   ├── lda_model.pkl                    # Trained LDA model
+│   ├── vectorizer.pkl                   # CountVectorizer instance
+│   └── topic_keywords.pkl               # List of top words for each topic
+├── model_training.py                    # Script for model training and saving
+├── app.py                               # Streamlit app for topic inference
+├── requirements.txt                     # Required Python packages
+└── README.md                            # Project documentation
 ```
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License.
+This project is licensed under the **MIT License**. You are free to use, modify, and distribute it.
+
+---
+
+## Contact
+
+If you have questions or want to collaborate, feel free to connect with me on:
+
+* [LinkedIn](https://www.linkedin.com/in/amit-kharche)
+* [Medium](https://medium.com/@amitkharche14)
+* [GitHub](https://github.com/amitkharche)
+
+```
